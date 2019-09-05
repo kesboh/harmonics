@@ -15,6 +15,7 @@ note_dict = {
 "F#5": 622.25,
 "G5": 622.25,
 "G#5": 622.25,
+"A5": 880.00
 }
 
 
@@ -94,15 +95,13 @@ def main():
     ax[5][0].set_xlabel('time [sec]')
     ax[5][1].set_xlabel('time [sec]')
 
+
     #plt.figure()
-    #plt.figure()
-    #plt.figure()
-    #plt.figure()
-    #plt.plot(t, interval("Csharp5", "D5", t))
+    #plt.plot(t, interval("A4", "A5", t))
     #plt.figure()
     #plt.plot(t, chord("A4", "E5", "Csharp5", t))
     #plt.figure()
     #plt.plot(t, chord("Csharp4", "E5", "A4", t))
-    f.savefig("/Users/fer003/Desktop/Harmonics/fig.pdf")
+    f.savefig("output/fig.pdf")
 main()
 #plt.show()

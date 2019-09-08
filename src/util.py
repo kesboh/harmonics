@@ -1,4 +1,6 @@
 from enum import Enum
+from scipy import signal
+import numpy as np
 
 class INTERVALS(Enum):
     """ Enums representing the intervals of the chromatic scale in addition to
@@ -62,6 +64,12 @@ class NOTES_EQUAL(Enum):
     G_5      = Fsharp_5*(2.0**(1.0/12.0))
     Gsharp_5 = G_5*(2.0**(1.0/12.0))
     A_5      = Gsharp_5*(2.0**(1.0/12.0))
+
+
+#Function aliases for generating the periodic signals
+W_SINE_FNC   = np.sin
+W_SQUARE_FNC = signal.square
+W_SAW_FNC    = signal.sawtooth
 
 
 def rotate_list_left(l, n):

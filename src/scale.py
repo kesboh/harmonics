@@ -4,7 +4,7 @@ class Scale(object):
 
     def __init__(self, fund_hz, intervals, octave_extend_n=None):
         """ Returns a scale based on the given fundamental, consisting of the given
-        intervals, and extended by octave_extend_n number of octaves (increasing and decreasing frequency) """
+        intervals, and extended by octave_extend_n number of octaves """
 
         self.intervals = intervals
         self.fund_hz = fund_hz
@@ -23,6 +23,8 @@ class Scale(object):
 
         self.fund_hz_index = self.intervals.index(fund_hz)
 
+
+
     def print_freqs(self):
         """ Print the frequencies of this scale """
         for i in range(0, len(self.intervals)):
@@ -40,7 +42,7 @@ class Scale(object):
         """
         intervals = []
         r = [1.0, 25.0/24.0, 9.0/8.0, 6.0/5.0, 5.0/4.0, 4.0/3.0, 45.0/32.0, 3.0/2.0, 8.0/5.0,
-            5.0/3.0, 9.0/5.0, 15.0/8.0]
+            5.0/3.0, 9.0/5.0, 15.0/8.0, 2.0]
 
         for ratio in r:
             intervals.append(fund_hz*ratio)

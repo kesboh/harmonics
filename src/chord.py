@@ -20,7 +20,7 @@ class Chord(object):
         self.scale = scale
         self.intervals = []
         self.root_degree = root_degree
-        self.name = None
+        self.name = name
         
         for interval in intervals:
             if (isinstance(interval, INTERVALS)):
@@ -30,7 +30,6 @@ class Chord(object):
                 raise ValueError("Chord intervals cant exceed intervals of given scale")
 
             self.intervals.append(scale.intervals[interval+root_degree])
-
 
     def invert(self, n=1):
         """ Inverts this chord by n degrees, e.g:
@@ -65,62 +64,62 @@ class Chord(object):
     """
 
     @staticmethod
-    def triad(scale, is_maj, root_degree=INTERVALS.TONIC):
+    def triad(scale, is_maj, root_degree=INTERVALS.TONIC, name=None):
         """ Return a chord of the simple triad type """
         third = INTERVALS.MAJ_THRD if is_maj else INTERVALS.MIN_THRD
 
-        return Chord(scale, [INTERVALS.TONIC, third, INTERVALS.PRF_FFTH], root_degree)
+        return Chord(scale, [INTERVALS.TONIC, third, INTERVALS.PRF_FFTH], root_degree, name)
 
     @staticmethod
-    def maj(scale, root_degree=INTERVALS.TONIC):
+    def maj(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a simple major triad """
-        return Chord.triad(scale, True, root_degree)
+        return Chord.triad(scale, True, root_degree, name)
 
     @staticmethod
-    def maj7(scale, root_degree=INTERVALS.TONIC):
+    def maj7(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a maj7 chord """
-        return Chord.maj(scale, root_degree).add_extension(INTERVALS.MAJ_SVTH)
+        return Chord.maj(scale, root_degree, name).add_extension(INTERVALS.MAJ_SVTH)
 
     @staticmethod
-    def maj9(scale, root_degree=INTERVALS.TONIC):
+    def maj9(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a maj9 chord """
-        return (Chord.maj(scale, root_degree).add_extension(INTERVALS.MAJ_SVTH)
+        return (Chord.maj(scale, root_degree, name).add_extension(INTERVALS.MAJ_SVTH)
                 .add_extension(INTERVALS.OCTAVE + INTERVALS.MAJ_SCND))
 
     @staticmethod
-    def dom7(scale, root_degree=INTERVALS.TONIC):
+    def dom7(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a dominant 7th chord """
-        return Chord.maj(scale, root_degree).add_extension(INTERVALS.MIN_SVTH)
+        return Chord.maj(scale, root_degree, name).add_extension(INTERVALS.MIN_SVTH)
 
     @staticmethod
-    def min(scale, root_degree=INTERVALS.TONIC):
+    def min(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a simple minor triad chord """
-        return Chord.triad(scale, False, root_degree)
+        return Chord.triad(scale, False, root_degree, name)
 
     @staticmethod
-    def min7(scale, root_degree=INTERVALS.TONIC):
+    def min7(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a min7 chord """
-        return Chord.triad(scale, False, root_degree).add_extension(INTERVALS.MIN_SVTH)
+        return Chord.triad(scale, False, root_degree, name).add_extension(INTERVALS.MIN_SVTH)
 
     @staticmethod
-    def min9(scale, root_degree=INTERVALS.TONIC):
+    def min9(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a min7 chord """
-        return (Chord.triad(scale, False, root_degree).add_extension(INTERVALS.MIN_SVTH)
-        .add_extension(INTERVALS.OCTAVE + INTERVALS.MAJ_SCND))
+        return (Chord.triad(scale, False, root_degree, name).add_extension(INTERVALS.MIN_SVTH)
+                .add_extension(INTERVALS.OCTAVE + INTERVALS.MAJ_SCND))
 
     @staticmethod
-    def min_maj7(scale, root_degree=INTERVALS.TONIC):
+    def min_maj7(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a minor major seventh chord """
-        return Chord.triad(scale, root_degree).add_extension(INTERVALS.MAJ_SVTH)
+        return Chord.triad(scale, root_degree, name).add_extension(INTERVALS.MAJ_SVTH)
 
     @staticmethod
-    def aug(scale, root_degree=INTERVALS.TONIC):
+    def aug(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return an augmented triad """
-        return Chord(scale, [INTERVALS.TONIC, INTERVALS.MAJ_THRD, INTERVALS.MIN_SXTH], root_degree)
+        return Chord(scale, [INTERVALS.TONIC, INTERVALS.MAJ_THRD, INTERVALS.MIN_SXTH], root_degree, name)
 
     @staticmethod
-    def dim(scale, root_degree=INTERVALS.TONIC):
+    def dim(scale, root_degree=INTERVALS.TONIC, name=None):
         """ Return a diminished triad """
-        return Chord(scale, [INTERVALS.TONIC, INTERVALS.MIN_THRD, INTERVALS.DIM_FFTH], root_degree)
+        return Chord(scale, [INTERVALS.TONIC, INTERVALS.MIN_THRD, INTERVALS.DIM_FFTH], root_degree, name)
 
 

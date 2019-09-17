@@ -68,6 +68,6 @@ class ChordPlotter(object):
 # minthrd =  Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.MIN_THRD], name="m3")
 # ChordPlotter(minthrd, 2)
 
-# stacked_majsevenths = Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.MAJ_SVTH.value, INTERVALS.MAJ_SVTH.value*2,INTERVALS.MAJ_SVTH.value*3])
-# ChordPlotter(stacked_majsevenths, 2)   
+stacked_majsevenths = Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.MAJ_SVTH.value, INTERVALS.MAJ_SVTH.value*2])
+ChordPlotter(stacked_majsevenths, 2)   
         

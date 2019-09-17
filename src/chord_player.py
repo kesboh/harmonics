@@ -28,12 +28,12 @@ class ChordPlayer(object):
         for interval in chord.intervals:
             wave += (ChordPlayer.interval_as_sine(interval, wave_fnc) / (len(chord.intervals)))
 
-        return wave.astype(np.float32)
+        return wave
 
     @staticmethod
     def interval_as_sine(freq, wave_fnc=W_SINE_FNC):
         """ Takes as input a frequency and returns a sine wave of said frequency """
-        return wave_fnc(2*np.pi*np.arange(F_SAMPLE*LEN_S*LEN_SCALE_FACTOR)*freq/F_SAMPLE)
+        return wave_fnc(2*np.pi*np.arange(F_SAMPLE*LEN_S*LEN_SCALE_FACTOR)*freq/F_SAMPLE).astype(np.float32)
 
     def play_chord(self, chord, wave_fnc=W_SINE_FNC, volume=1):
         """ Plays an audio-representation of the given chord """
@@ -69,35 +69,38 @@ class ChordPlayer(object):
 player = ChordPlayer()
 
 # A major in just temperament
-# a_maj = Chord.maj(Scale.twelve_tjt(220))
-# player.play_chord(ChordPlayer.chord_as_wave(a_maj))
+a_maj = Chord.maj(Scale.twelve_tjt(220))
+player.play_chord(a_maj)
 
 # A minor in equal temperament
-# a_min = Chord.min(Scale.twelve_tet(220))
-# player.play_chord(ChordPlayer.chord_as_wave(a_min))
+a_min = Chord.min(Scale.twelve_tet(220))
+player.play_chord(a_min)
 
-# a_maj7 in just temperament, first inversion
-# a_maj7 = Chord.maj7(TWELVE_TET_220)
-# player.play_arpeggio(a_maj7)
+# Amaj7 in just temperament, first inversion
+a_maj7 = Chord.maj7(TWELVE_TET_220)
+player.play_arpeggio(a_maj7)
 
-# a_maj9 in just temperament, with added 7th
-# a_maj9 = Chord.maj7(TWELVE_TJT_220).add_extension(INTERVALS.MAJ_NINTH)
-# player.play_chord(a_maj9)
+# Amaj9 in just temperament, with added 7th
+a_maj9 = Chord.maj7(TWELVE_TJT_220).add_extension(INTERVALS.MAJ_NINTH)
+player.play_chord(a_maj9)
 
-# a_maj9 = Chord.maj7(TWELVE_TET_220).add_extension(INTERVALS.MAJ_NINTH)
-# player.play_chord(a_maj9)
+a_maj9 = Chord.maj7(TWELVE_TET_220).add_extension(INTERVALS.MAJ_NINTH)
+player.play_chord(a_maj9)
 
 # Big a_dim chord
-# a_dim = Chord.dim(TWELVE_TET_220).add_extension(INTERVALS.MAJ_SXTH).add_extension(INTERVALS.OCTAVE).add_extension(INTERVALS.MIN_TENTH)
-# player.play_arpeggio(a_dim)
+a_dim = Chord.dim(TWELVE_TET_220).add_extension(INTERVALS.MAJ_SXTH).add_extension(INTERVALS.OCTAVE).add_extension(INTERVALS.MIN_TENTH)
+player.play_arpeggio(a_dim)
 
 # Bigly tritone
-# a_tri = Chord(TWELVE_TET_220, [INTERVALS.TONIC, INTERVALS.TRITONE, INTERVALS.TRITONE.value*2, INTERVALS.TRITONE.value*3, INTERVALS.TRITONE.value*4])
-# player.play_chord(a_tri)
+a_tri = Chord(TWELVE_TET_220, [INTERVALS.TONIC, INTERVALS.TRITONE, INTERVALS.TRITONE.value*2, INTERVALS.TRITONE.value*3, INTERVALS.TRITONE.value*4])
+player.play_chord(a_tri)
 
-# #Build chord manually from arbitrary intervals
-# a_min = Chord(TWELVE_TJT_220, [INTERVALS.TONIC,  INTERVALS.MAJ_THRD], INTERVALS.TRITONE)
-# player.play_chord(ChordPlayer.chord_as_wave(a_min))
+up = Chord(TWELVE_TET_220, [INTERVALS.PRF_FFTH, INTERVALS.PRF_FFTH.value+2])
+player.play_arpeggio(up)
+
+#Build chord manually from arbitrary intervals
+a_maj13 = Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.MAJ_THRD, INTERVALS.MAJ_SVTH, INTERVALS.MAJ_NINTH, INTERVALS.MAJ_FRTN])
+player.play_chord(a_maj13)
 
 
 

@@ -47,27 +47,3 @@ class ChordPlotter(object):
         fig.tight_layout()
         plt.xlim(0, period)
         plt.show()
-
-
-
-# a_maj9 = Chord.maj7(TWELVE_TET_220, name="Amaj9").add_extension(INTERVALS.MAJ_NINTH)
-# ChordPlotter(a_maj9)
-
-# a_tri = Chord(TWELVE_TET_220, [INTERVALS.TONIC, INTERVALS.TRITONE, INTERVALS.TRITONE.value*2, INTERVALS.TRITONE.value*3, INTERVALS.TRITONE.value*4], name="Quad Tritone")
-# ChordPlotter(a_tri)
-
-# a5 = Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.PRF_FFTH], name="A5 JT")
-# ChordPlotter(a5, 2)
-
-# a_tri = Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.TRITONE], name="Tritone JT")
-# ChordPlotter(a_tri, 2)
-
-# majthrd =  Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.MAJ_THRD], name="M3")
-# ChordPlotter(majthrd, 2)
-
-# minthrd =  Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.MIN_THRD], name="m3")
-# ChordPlotter(minthrd, 2)
-
-# stacked_majsevenths = Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.MAJ_SVTH.value, INTERVALS.MAJ_SVTH.value*2])
-# ChordPlotter(stacked_majsevenths, 2)   
-        

@@ -44,6 +44,7 @@ class Chord(object):
             ri[i] = ri[i]*2
 
         self.intervals = ri
+        return self
 
     def add_extension(self, interval_extension):
         """ Add an extension to this chord. The extension may be of the INTERVALS enum type, or

@@ -48,10 +48,13 @@ class ChordPlayer(object):
         stream.stop_stream()
         stream.close()
 
-    def play_arpeggio(self, chord, volume=1):
+    def play_arpeggio(self, chord, volume=1, dur=1):
         """ Plays an audio-representation of the given chord """
         if volume > 1.0 or volume < 0.0:
             volume = 1
+
+        if dur > 1.0 or dur < 0.0:
+            dur = 1
 
         for interval in chord.intervals:
             stream = self.player.open(format=pyaudio.paFloat32, channels=1, rate=F_SAMPLE,
@@ -59,13 +62,12 @@ class ChordPlayer(object):
 
             #Shorten the samples so that playing all intervals take as long as playing the chord would
             smpls = ChordPlayer.interval_as_sine(interval)
-            stream.write(volume*smpls[:len(smpls)/len(chord.intervals)])
+            stream.write(volume*smpls[:int(round(len(smpls)*dur))/len(chord.intervals)])
             stream.stop_stream()
             
         stream.close()
 
 
-    
 player = ChordPlayer()
 
 # A major in just temperament
@@ -96,7 +98,7 @@ a_tri = Chord(TWELVE_TET_220, [INTERVALS.TONIC, INTERVALS.TRITONE, INTERVALS.TRI
 player.play_chord(a_tri)
 
 up = Chord(TWELVE_TET_220, [INTERVALS.PRF_FFTH, INTERVALS.PRF_FFTH.value+2])
-player.play_arpeggio(up)
+player.play_arpeggio(up, dur=0.25)
 
 #Build chord manually from arbitrary intervals
 a_maj13 = Chord(TWELVE_TJT_220, [INTERVALS.TONIC, INTERVALS.MAJ_THRD, INTERVALS.MAJ_SVTH, INTERVALS.MAJ_NINTH, INTERVALS.MAJ_FRTN])
